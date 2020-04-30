@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件目录</title>
+    <style>
+        ul, li { list-style-type: none; -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        li ul { overflow-y: hidden; height: 0; transform: translateZ(0); backface-visibility: hidden; }
+        .hide { height: 0; visibility: hidden; }
+        .show { height: initial; }
+        li { font-size: 14px; line-height: 28px; position: relative; cursor: pointer; }
+        .icon { position: absolute; left: -24px; top: 8px; }
+    </style>
+</head>
+
+<body>
+    <div>文件目录：<%PATH%></div>
+    <div id="tree"></div>
+</body>
+<script>
+    const treeData = <%TREE_DATA%>
+</script>
+<script src="./source/fileTreeTemplate.js"></script>
+
+</html>
