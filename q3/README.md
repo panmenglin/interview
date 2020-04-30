@@ -3,6 +3,18 @@
 输入框自动完成功能。
 
 ---
+## 项目启动
+
+安装依赖
+```
+yarn install / npm install
+```
+
+启动项目
+```
+npm run start
+```
+
 
 ## 使用方法
 

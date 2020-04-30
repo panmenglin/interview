@@ -24,7 +24,7 @@ const Options = React.memo(({ visible, optionsSetting, options, onSelect }: Opti
     // 选项选中
     const handleSelect = useCallback((value: string, option: LabeledValue) => {
         onSelect(value, option)
-    }, [])
+    }, [onSelect])
 
     // 阻止 input blur 事件
     const preventDefault = useCallback((e: React.MouseEvent<HTMLElement, MouseEvent>) => {

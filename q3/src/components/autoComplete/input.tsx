@@ -38,14 +38,14 @@ function useDebounce(fn: () => void, delay: number, dep = []) {
     const { current } = useRef<debounceRef>({ fn, timer: undefined });
     useEffect(function () {
         current.fn = fn;
-    }, [fn]);
+    }, [current.fn, fn]);
 
     return useCallback(function f(...args) {
         if (current.timer) {
             clearTimeout(current.timer);
         }
         current.timer = setTimeout(current.fn, delay);
-    }, dep)
+    }, [current.fn, current.timer, delay])
 }
 
 
@@ -70,7 +70,7 @@ const AutoComplete = React.memo(({ placeholder, options, onChange, onSearch, onS
         optionsSetting.top = rect.top + rect.height
         optionsSetting.width = rect.width
         setOptionsSetting(optionsSetting)
-    }, [])
+    }, [optionsSetting])
 
     // input change
     const handleChange = useCallback((e: any) => {
@@ -79,7 +79,7 @@ const AutoComplete = React.memo(({ placeholder, options, onChange, onSearch, onS
         if (onChange) {
             onChange(e.target.value)
         }
-    }, [])
+    }, [onChange])
 
     // 搜索
     const handleSearch = useDebounce(() => {
@@ -91,7 +91,7 @@ const AutoComplete = React.memo(({ placeholder, options, onChange, onSearch, onS
     // value变更执行搜索
     useEffect(() => {
         handleSearch()
-    }, [value]);
+    }, [handleSearch, value]);
     
     // 失去焦点
     const handleBlur = useCallback(() => {
@@ -112,7 +112,7 @@ const AutoComplete = React.memo(({ placeholder, options, onChange, onSearch, onS
         if (onSelect) {
             onSelect(value, option)
         }
-    }, [])
+    }, [onSelect])
 
     return (
         <React.Fragment>
